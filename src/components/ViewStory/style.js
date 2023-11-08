@@ -20,6 +20,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     alignSelf: 'center',
   },
+  card_controller_header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    columnGap: 15,
+  },
   info_user: {
     flexDirection: 'row',
     alignItems: 'center',

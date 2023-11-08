@@ -1,13 +1,9 @@
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import CIRCLE_ICON from '../../assets/icons/circle.svg';
-import {useNavigation} from '@react-navigation/native';
-const ItemStory = ({uid, image_user, name_user}) => {
-  const navigation = useNavigation();
+const ItemStory = ({uid, image_user, name_user, onOpenStory}) => {
   return (
-    <TouchableOpacity
-      style={styles.main}
-      onPress={() => navigation.navigate('ViewStory')}>
+    <TouchableOpacity style={styles.main} onPress={onOpenStory}>
       <View style={styles.cardImage}>
         <View style={styles.circle_icon}>
           <CIRCLE_ICON />

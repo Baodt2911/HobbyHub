@@ -11,7 +11,7 @@ const renderScene = SceneMap({
   home: Home,
   search: Search,
   addTus: AddTus,
-  categories: Profile,
+  categories: AddTus,
   profile: Profile,
 });
 
@@ -70,6 +70,7 @@ export default function TabViewer() {
       initialLayout={{width: WIDTH_SCREEN}}
       style={{backgroundColor: '#fff'}}
       tabBarPosition="bottom"
+      swipeEnabled={false}
     />
   );
 }

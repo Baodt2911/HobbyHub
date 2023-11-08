@@ -25,11 +25,13 @@ const ItemPost = ({
   like,
   comment,
   createdAt,
+  onOpenComments,
 }) => {
   const [isMore, setIsMore] = useState(false);
   const [imageActive, setImageActive] = useState(0);
   const scaleValue = useRef(new Animated.Value(0)).current;
   const doubleTap = useRef(0);
+  const viewConfigRef = {viewAreaCoveragePercentThreshold: 100};
   const onViewableRef = useRef(({changed}) => {
     if (changed[0].isViewable) {
       setImageActive(changed[0].index);
@@ -87,7 +89,6 @@ const ItemPost = ({
         </TouchableOpacity>
       </View>
       {/* List Image Post */}
-
       <View style={styles.card_list_image_post}>
         <FlatList
           data={list_photo}
@@ -99,6 +100,8 @@ const ItemPost = ({
           snapToAlignment="center"
           showsHorizontalScrollIndicator={false}
           onViewableItemsChanged={onViewableRef.current}
+          viewabilityConfig={viewConfigRef}
+          scrollEventThrottle={16}
         />
         {/* Slide dot */}
         {list_photo.length === 1 ? (
@@ -176,7 +179,9 @@ const ItemPost = ({
           </View>
           {/* Button comment */}
           <View style={styles.card_btn}>
-            <TouchableOpacity style={styles.btn_comment}>
+            <TouchableOpacity
+              style={styles.btn_comment}
+              onPress={onOpenComments}>
               <COMMENT_ICON />
             </TouchableOpacity>
             <Text style={styles.txt_btn}>{comment}</Text>

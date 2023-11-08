@@ -58,7 +58,7 @@ const fakeData = [
       'https://vnn-imgs-a1.vgcloud.vn/icdn.dantri.com.vn/2021/05/08/kimoanh-851-1620472406599.jpeg',
   },
 ];
-const Story = () => {
+const Story = ({onOpenStory}) => {
   const renderItemStory = ({item}) => {
     if (item.uid === 0) {
       return <AddStory />;
@@ -68,6 +68,7 @@ const Story = () => {
         uid={item.uid}
         image_user={item.image_user}
         name_user={item.name_user}
+        onOpenStory={onOpenStory}
       />
     );
   };

@@ -5,15 +5,23 @@ import {
   Platform,
   TextInput,
   TouchableOpacity,
+  ScrollView,
 } from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import styles from './style';
 import SEARCH_ICON from '../../assets/icons/search.svg';
 import FILTER_ICON from '../../assets/icons/filter.svg';
 import ListHobbySearch from '../../components/ListHobbySearch';
 import Logo from '../../components/Logo';
+import Skeleton from '../../utils/Skeleton';
+import FilterSearch from '../../components/FilterSearch';
 
 const Search = () => {
+  const [isOpenFilter, setIsOpenFilter] = useState(false);
+  const [searchType, setSearchType] = useState('general');
+  const onOpenFilterSearch = () => {
+    setIsOpenFilter(!isOpenFilter);
+  };
   return (
     <View style={styles.container}>
       <KeyboardAvoidingView
@@ -33,14 +41,28 @@ const Search = () => {
             placeholderTextColor={'#3b3b3b4d'}
           />
           {/* Button Filter */}
-          <TouchableOpacity>
+          <TouchableOpacity onPress={onOpenFilterSearch}>
             <FILTER_ICON />
           </TouchableOpacity>
         </View>
+        {/* Card Filter  */}
+        {isOpenFilter && (
+          <FilterSearch
+            isOpen={isOpenFilter}
+            searchType={searchType}
+            onChangeSearchType={setSearchType}
+          />
+        )}
         {/* List hobby search */}
-        <View style={styles.cardListHobby}>
-          <ListHobbySearch />
-        </View>
+        {!isOpenFilter && (
+          <View style={styles.cardListHobby}>
+            <ListHobbySearch />
+          </View>
+        )}
+        {/* Content */}
+        <ScrollView>
+          {/* <Skeleton width={50} height={50} style={{borderRadius: 100}} /> */}
+        </ScrollView>
       </KeyboardAvoidingView>
     </View>
   );

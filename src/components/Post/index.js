@@ -74,7 +74,7 @@ const fakeData = [
     createdAt: '2023-09-08T17:15:16.402Z',
   },
 ];
-const Post = () => {
+const Post = ({onOpenComments}) => {
   const renderItemPost = ({item}) => {
     return (
       <ItemPost
@@ -85,6 +85,7 @@ const Post = () => {
         like={item.like}
         comment={item.comment}
         createdAt={item.createdAt}
+        onOpenComments={onOpenComments}
       />
     );
   };

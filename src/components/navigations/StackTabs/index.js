@@ -6,9 +6,11 @@ import ForgotPassword from '../../../screens/ForgotPassword';
 import VerificationCode from '../../../screens/VerificationCode';
 import ResetPassword from '../../../screens/ResetPassword';
 import ChooseHobby from '../../../screens/ChooseHobby';
-import ViewStory from '../../../screens/ViewStory';
+import ViewStory from '../../ViewStory';
 import Home from '../../../screens/Home';
 import TabViewer from '../../TabViewer';
+import Caption from '../../../screens/Caption';
+import Notification from '../../../screens/Notification';
 
 const Stack = createNativeStackNavigator();
 export default function StackTabs() {
@@ -25,7 +27,8 @@ export default function StackTabs() {
       <Stack.Screen name="ResetPassword" component={ResetPassword} />
       <Stack.Screen name="ChooseHobby" component={ChooseHobby} />
       <Stack.Screen name="TabViewer" component={TabViewer} />
-      <Stack.Screen name="ViewStory" component={ViewStory} />
+      <Stack.Screen name="Caption" component={Caption} />
+      <Stack.Screen name="Notification" component={Notification} />
     </Stack.Navigator>
   );
 }

@@ -13,10 +13,22 @@ import Story from '../../components/Story';
 import Post from '../../components/Post';
 import VirtualizedScrollView from '../../components/VirtualizedScrollView';
 import Logo from '../../components/Logo';
+import ViewStory from '../../components/ViewStory';
+import Comments from '../../components/Comments';
+import {useNavigation} from '@react-navigation/native';
 const Home = () => {
+  const navigation = useNavigation();
   const [isRefresh, setIsRefresh] = useState(false);
+  const [isVisibleStory, setIsVisibleStory] = useState(false);
   const onRefreshNewsFeed = () => {
     setIsRefresh(!isRefresh);
+  };
+  const onOpenStory = () => {
+    setIsVisibleStory(!isVisibleStory);
+  };
+  const [isVisibleComments, setIsVisibleComments] = useState(false);
+  const onOpenComments = () => {
+    setIsVisibleComments(!isVisibleComments);
   };
   return (
     <VirtualizedScrollView
@@ -31,7 +43,7 @@ const Home = () => {
         <Logo />
         <View style={styles.controllers}>
           {/* Button notification */}
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate('Notification')}>
             <NOTIFICATION_ICON />
           </TouchableOpacity>
           {/* Button Chat */}
@@ -42,10 +54,15 @@ const Home = () => {
       </View>
       {/* Story */}
       <View style={styles.cardStory}>
-        <Story />
+        <Story onOpenStory={onOpenStory} />
+        <ViewStory isVisible={isVisibleStory} onCloseStory={onOpenStory} />
       </View>
       {/* POST */}
-      <Post />
+      <Post onOpenComments={onOpenComments} />
+      <Comments
+        isVisible={isVisibleComments}
+        onCloseComments={onOpenComments}
+      />
     </VirtualizedScrollView>
   );
 };
